@@ -14,8 +14,12 @@ import javax.swing.DefaultListModel;
  */
 public class Frame extends javax.swing.JFrame {
     Formatter formatter = new Formatter();
-    ArrayList<Earth> earth;
-    ArrayList<Mars> mars;
+   // ArrayList<Earth> earth;
+   // ArrayList<Mars> mars;
+    
+    Planet earth = new Planet();
+    Planet mars = new Planet();
+    
     DefaultListModel dm = new DefaultListModel();
     DefaultListModel dm1 = new DefaultListModel();
     DefaultListModel dm2 = new DefaultListModel();
@@ -25,12 +29,13 @@ public class Frame extends javax.swing.JFrame {
     Entity g = new Entity("Grains", "Earth");
     Entity h1 = new Entity("Human 1", "Earth");
     Entity h2 = new Entity("Human 2", "Earth");
+    Entity e = new Entity("Scientist", "Earth");
     int m = 0;
     
     /**
      * Creates new form Frame
      */
-    Entity e = new Entity("Scientist", "Earth");
+    
     public Frame() {
         initComponents();
 //        Entity s = new Entity("Scientist", "Earth");
@@ -39,6 +44,15 @@ public class Frame extends javax.swing.JFrame {
 //        Entity g = new Entity("Grains", "Earth");
 //        Entity h1 = new Entity("Human 1", "Earth");
 //        Entity h2 = new Entity("Human 2", "Earth");
+        
+        earth.addOccupant(s.name);
+        earth.addOccupant(c.name);
+        earth.addOccupant(l.name);
+        earth.addOccupant(g.name);
+        earth.addOccupant(h1.name);
+        earth.addOccupant(h2.name);
+        earth.addOccupant(e.name);
+        
         jList1.setModel(dm);
         dm.addElement(s.name);
         dm.addElement(c.name);
@@ -144,7 +158,9 @@ public class Frame extends javax.swing.JFrame {
         });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        
         getContentPane().setLayout(layout);
+        
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -289,6 +305,8 @@ public class Frame extends javax.swing.JFrame {
         jList1.setModel(dm);
         jList2.setModel(dm1);
         jList3.setModel(dm2);
+        
+        
         int g = 0;
         for(int i = 0; i < dm1.size(); i++){
             if(dm1.get(i).equals("Scientist")){
@@ -296,49 +314,87 @@ public class Frame extends javax.swing.JFrame {
             }
         }
         System.out.println("g = " + g);
-        if(g == 1){
-            if(m % 2 == 0){
-                for(int i = 0; i < dm.size(); i++){
+        if(g == 1){ //only if the scientist exists 	
+            if(m % 2 == 0){  //if coming from earth to mars
+                for(int i = 0; i < dm.size(); i++){ //removes from dm(earth)
                     for(int j = 0; j < dm1.size(); j++){
-                        if(dm.get(i).equals(dm1.get(j))){
+                        if(dm.get(i).equals(dm1.get(j))){ 
+                        	
+//                        	System.out.println("dm.get(i) : " + dm.get(i));
+//                        	System.out.println("dm1.get(j) : " + dm.get(j));
+                        	
+                            earth.removeOccupant(dm.get(i).toString());
+                            earth.removeOccupant("Scientist");
                             dm.removeElement(dm.get(i));
+                            
+                            System.out.println("REMOVING " + dm.get(i) + " FROM EARTH");
+                            
                         }
                     }
                 }
 
-                for(int i = 0; i < dm1.size(); i++){
+                for(int i = 0; i < dm1.size(); i++){ //adds to dm2(mars)
                     dm2.addElement(dm1.get(i));
+                    mars.addOccupant(dm1.get(i).toString());
                 }
-                for(int i = 0; i < 3; i++){
+                for(int i = 0; i < 3; i++){ //removes from middle(dm1)
                     if(dm1.size() > 0){
                         dm1.removeElement(dm1.get(0));
                     }
                 }
                 m = m + 1;
+                
             
             }
             
-            else{
+            else{ //if coming from mars to earth
                for(int i = 0; i < dm2.size(); i++){
-                    for(int j = 0; j < dm1.size(); j++){
+                    for(int j = 0; j < dm1.size(); j++){ //removes from mars(dm2)
                         if(dm2.get(i).equals(dm1.get(j))){
+                            mars.removeOccupant(dm2.get(i).toString());
+                            mars.removeOccupant("Scientist");
                             dm2.removeElement(dm2.get(i));
                         }
                     }
                     
                     
                 }
-               for(int i = 0; i < dm1.size(); i++){
+               for(int i = 0; i < dm1.size(); i++){ //adds to earth(dm)
                     dm.addElement(dm1.get(i));
+                    earth.addOccupant(dm1.get(i).toString());
                 }
                
-               for(int i = 0; i < 3; i++){
+               for(int i = 0; i < 3; i++){  //removes from middle(dm1)
                    if(dm1.size() > 0){
                         dm1.removeElement(dm1.get(0));
                    }
                 }
                
                m = m + 1;
+            }
+            
+            //check if anyone was eaten
+            if(earth.check() == true && mars.check() == true)
+            {
+            	System.out.println("Everyone is still OK.");
+            }
+            else {
+            	System.out.println("Someone was eaten :(");
+            	
+            	System.out.println();
+            	System.out.println("EARTH'S OCCUPANTS: ");
+            	for(int i = 0; i < earth.getOccupants().size(); i++)
+            	{
+            		System.out.println(earth.getOccupants().get(i));
+            	}
+            	
+            	System.out.println();
+            	System.out.println("MARS' OCCUPANTS: ");
+            	for(int i = 0; i < mars.getOccupants().size(); i++)
+            	{
+            		System.out.println(mars.getOccupants().get(i));
+            	}
+           
             }
         }
     }//GEN-LAST:event_goButtonActionPerformed
