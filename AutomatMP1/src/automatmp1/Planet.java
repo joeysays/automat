@@ -60,18 +60,30 @@ public class Planet {
 
     	if(scientist == 0)
     	{
-    	if(lion == 1 && cow == 1)
+    	if(lion == 1 && cow == 1) {
+    		System.out.println("The lion ate the cow! :(");
     		return false;
-    	else if(cow == 1 && grains == 1)
+    	}
+    	else if(cow == 1 && grains == 1) {
+    			System.out.println("The cow ate the grains! :(");
     			return false;
-    		else if(human1 == 1 && lion == 1)
+    		}
+    		else if(human1 == 1 && lion == 1) {
+    				System.out.println("The human (1) killed the lion! :(");
     				return false;
-    			else if(human2 == 1 && lion == 1)
-    				return false;
-    				else if(human1 == 1 && cow == 1)
+    			}
+    			else if(human2 == 1 && lion == 1) {
+    					System.out.println("The human (2) killed the lion! :(");
     					return false;
-    					else if(human2 == 1 && lion == 1)
+    				}
+    				else if(human1 == 1 && cow == 1) {
+    						System.out.println("The human (1) ate the cow! :(");
     						return false;
+    					}	
+    					else if(human2 == 1 && lion == 1) {
+    							System.out.println("The human (2) ate the cow! :(");
+    							return false;
+    						}	
     						else
     							return true;
     	}

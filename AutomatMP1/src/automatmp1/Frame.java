@@ -314,24 +314,38 @@ public class Frame extends javax.swing.JFrame {
             }
         }
         System.out.println("g = " + g);
+        
         if(g == 1){ //only if the scientist exists 	
             if(m % 2 == 0){  //if coming from earth to mars
-                for(int i = 0; i < dm.size(); i++){ //removes from dm(earth)
-                    for(int j = 0; j < dm1.size(); j++){
-                        if(dm.get(i).equals(dm1.get(j))){ 
-                        	
-//                        	System.out.println("dm.get(i) : " + dm.get(i));
-//                        	System.out.println("dm1.get(j) : " + dm.get(j));
-                        	
-                            earth.removeOccupant(dm.get(i).toString());
-                            earth.removeOccupant("Scientist");
-                            dm.removeElement(dm.get(i));
-                            
-                            System.out.println("REMOVING " + dm.get(i) + " FROM EARTH");
-                            
-                        }
-                    }
-                }
+            	
+//                for(int i = 0; i < dm.size(); i++){ //removes from dm(earth)
+//                    for(int j = 0; j < dm1.size(); j++){
+//                        if(dm.get(i).equals(dm1.get(j))){ 
+//                        	
+////                        	System.out.println("dm.get(i) : " + dm.get(i));
+////                        	System.out.println("dm1.get(j) : " + dm.get(j));
+//                        	
+//                            System.out.println("REMOVING " + dm.get(i) + " FROM EARTH");
+//                        	
+//                            earth.removeOccupant(dm.get(i).toString());
+//                            earth.removeOccupant("Scientist");
+//                            dm.removeElement(dm.get(i));
+//                            
+//                        }
+//                    }
+//                }
+                
+                for(int j = 0; j < dm1.size(); j++){ //removes from earth(dm)
+             	   System.out.println("Middle[" + j + "] = " + dm1.get(j));
+             	   
+             	   for(int i = 0; i < dm.size(); i++) {
+ 	            	   if(dm.get(i).equals(dm1.get(j)))
+ 	            	   {
+ 	            		   earth.removeOccupant(dm1.get(j).toString());
+ 	            		   dm.removeElement(dm1.get(j));
+ 	            	   }
+             	   }       
+                 }
 
                 for(int i = 0; i < dm1.size(); i++){ //adds to dm2(mars)
                     dm2.addElement(dm1.get(i));
@@ -347,18 +361,20 @@ public class Frame extends javax.swing.JFrame {
             
             }
             
-            else{ //if coming from mars to earth
-               for(int i = 0; i < dm2.size(); i++){
-                    for(int j = 0; j < dm1.size(); j++){ //removes from mars(dm2)
-                        if(dm2.get(i).equals(dm1.get(j))){
-                            mars.removeOccupant(dm2.get(i).toString());
-                            mars.removeOccupant("Scientist");
-                            dm2.removeElement(dm2.get(i));
-                        }
-                    }
-                    
-                    
+            else{ //if coming from mars to earth  
+               System.out.println("SIZEE: " + dm1.size());
+               for(int j = 0; j < dm1.size(); j++){ //removes from mars(dm2)
+            	   System.out.println("Middle[" + j + "] = " + dm1.get(j));
+            	   
+            	   for(int i = 0; i < dm2.size(); i++) {
+	            	   if(dm2.get(i).equals(dm1.get(j)))
+	            	   {
+	            		   mars.removeOccupant(dm1.get(j).toString());
+	            		   dm2.removeElement(dm1.get(j));
+	            	   }
+            	   }       
                 }
+               
                for(int i = 0; i < dm1.size(); i++){ //adds to earth(dm)
                     dm.addElement(dm1.get(i));
                     earth.addOccupant(dm1.get(i).toString());
@@ -373,29 +389,31 @@ public class Frame extends javax.swing.JFrame {
                m = m + 1;
             }
             
+            //print current occupants of each planet
+        	System.out.println("EARTH'S OCCUPANTS: ");
+        	for(int i = 0; i < earth.getOccupants().size(); i++)
+        	{
+        		System.out.println(earth.getOccupants().get(i));
+        	}
+        	
+        	System.out.println();
+        	System.out.println("MARS' OCCUPANTS: ");
+        	for(int i = 0; i < mars.getOccupants().size(); i++)
+        	{
+        		System.out.println(mars.getOccupants().get(i));
+        	}
+            
             //check if anyone was eaten
             if(earth.check() == true && mars.check() == true)
             {
             	System.out.println("Everyone is still OK.");
             }
             else {
-            	System.out.println("Someone was eaten :(");
-            	
-            	System.out.println();
-            	System.out.println("EARTH'S OCCUPANTS: ");
-            	for(int i = 0; i < earth.getOccupants().size(); i++)
-            	{
-            		System.out.println(earth.getOccupants().get(i));
-            	}
-            	
-            	System.out.println();
-            	System.out.println("MARS' OCCUPANTS: ");
-            	for(int i = 0; i < mars.getOccupants().size(); i++)
-            	{
-            		System.out.println(mars.getOccupants().get(i));
-            	}
-           
+            	System.out.println("Someone was eaten :(");  
             }
+        }
+        else {
+        	System.out.println("The scientist must be present to travel!");
         }
     }//GEN-LAST:event_goButtonActionPerformed
 
@@ -405,7 +423,9 @@ public class Frame extends javax.swing.JFrame {
         jList2.setModel(dm1);
         jList3.setModel(dm2);
         
-        for(int i = 0; i < 3; i++){
+        
+        
+        for(int i = 0; i < dm1.getSize()+1; i++){
                 dm1.removeElement(dm1.get(0));
             }
     }//GEN-LAST:event_clrButtonActionPerformed
