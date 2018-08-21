@@ -7,16 +7,22 @@ package automatmp1;
 
 import java.util.ArrayList;
 import java.awt.Color;
+import java.awt.Container;
+import java.awt.Image;
+
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 /**
  *
  * @author Belle
  */
 public class Frame extends javax.swing.JFrame {
+	public Container pane;
+	
     Formatter formatter = new Formatter();
-   // ArrayList<Earth> earth;
-   // ArrayList<Mars> mars;
     
+   
     Planet earth = new Planet();
     Planet mars = new Planet();
     
@@ -38,12 +44,6 @@ public class Frame extends javax.swing.JFrame {
     
     public Frame() {
         initComponents();
-//        Entity s = new Entity("Scientist", "Earth");
-//        Entity c = new Entity("Cow", "Earth");
-//        Entity l = new Entity("Lion", "Earth");
-//        Entity g = new Entity("Grains", "Earth");
-//        Entity h1 = new Entity("Human 1", "Earth");
-//        Entity h2 = new Entity("Human 2", "Earth");
         
         earth.addOccupant(s.name);
         earth.addOccupant(c.name);
@@ -60,7 +60,6 @@ public class Frame extends javax.swing.JFrame {
         dm.addElement(g.name);
         dm.addElement(h1.name);
         dm.addElement(h2.name);
-    //    formatter.appendToPane(jTextPane1, s.name, Color.blue);
     }
 
     /**
@@ -71,6 +70,8 @@ public class Frame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+    	setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    	setSize(800,700);
 
         sButton = new javax.swing.JButton();
         cButton = new javax.swing.JButton();
@@ -88,45 +89,47 @@ public class Frame extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList<>();
         clrButton = new javax.swing.JButton();
+        resetButton = new javax.swing.JButton();
+        messageTA = new javax.swing.JTextArea();
+        jScrollPaneTA = new javax.swing.JScrollPane(messageTA);
+        movesLbl = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        sButton.setText("Scientist");
+       // sButton.setText("Scientist");
         sButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sButtonActionPerformed(evt);
             }
         });
 
-        cButton.setText("Cow");
+        //cButton.setText("Cow");
         cButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cButtonActionPerformed(evt);
             }
         });
 
-        lButton.setText("Lion");
+        //lButton.setText("Lion");
         lButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lButtonActionPerformed(evt);
             }
         });
 
-        gButton.setText("Grain");
+        //gButton.setText("Grain");
         gButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gButtonActionPerformed(evt);
             }
         });
 
-        h1Button.setText("Human 1");
+        //h1Button.setText("Human 1");
         h1Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 h1ButtonActionPerformed(evt);
             }
         });
 
-        h2Button.setText("Human 2");
+        //h2Button.setText("Human 2");
         h2Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 h2ButtonActionPerformed(evt);
@@ -136,101 +139,135 @@ public class Frame extends javax.swing.JFrame {
         jLabel1.setText("Earth");
 
         jLabel2.setText("Mars");
-
-        goButton.setText("Go");
-        goButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                goButtonActionPerformed(evt);
-            }
-        });
+        
+        movesLbl.setText("Moves: 0");
 
         jScrollPane3.setViewportView(jList1);
 
         jScrollPane4.setViewportView(jList2);
 
         jScrollPane5.setViewportView(jList3);
+        
+       // goButton.setText("Go");
+        goButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                goButtonActionPerformed(evt);
+            }
+        });
 
-        clrButton.setText("Clear");
+        clrButton.setText("CLEAR");
         clrButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clrButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         
-        getContentPane().setLayout(layout);
+        resetButton.setText("RESET");
+        resetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetButtonActionPerformed(evt);
+            }
+        });
         
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(gButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(goButton)
-                            .addComponent(h1Button))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(h2Button)
-                            .addComponent(clrButton)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(119, 119, 119)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(225, 225, 225)
-                                .addComponent(sButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lButton)))
-                        .addGap(136, 136, 136)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(102, 102, 102))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sButton)
-                    .addComponent(cButton)
-                    .addComponent(lButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(gButton)
-                    .addComponent(h1Button)
-                    .addComponent(h2Button))
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(goButton)
-                    .addComponent(clrButton))
-                .addContainerGap())
-        );
 
-        pack();
+		pane = getContentPane();
+		pane.setLayout(null);
+		
+		
+		pane.add(jLabel1);
+		jLabel1.setBounds(100, 30, 50, 50);
+		
+		pane.add(jLabel2);
+		jLabel2.setBounds(360, 30, 50, 50);
+		
+		pane.add(movesLbl);
+		movesLbl.setBounds(305, 250, 50, 50);
+		
+		pane.add(jList1);
+		jList1.setBounds(70, 80, 100, 150);
+		
+		pane.add(jList2);
+		jList2.setBounds(200, 80, 100, 150);
+  
+		pane.add(jList3);
+		jList3.setBounds(330, 80, 100, 150);
+		
+		pane.add(messageTA);
+		messageTA.setEditable(false);
+		messageTA.setBounds(300, 580, 170, 50);
+		
+		goButton.setBounds(300, 300, 80, 80);
+		ImageIcon goImage = new ImageIcon("C:\\Users\\Lucia Pineda\\workspace\\automat\\AutomatMP1\\src\\images\\go.png");
+		Image goImg = goImage.getImage();
+		Image newGoImg = goImg.getScaledInstance(goButton.getWidth(), goButton.getHeight(), Image.SCALE_SMOOTH); //this makes the image fit the button
+		ImageIcon goImageIcon = new ImageIcon(newGoImg);
+		goButton.setIcon(goImageIcon);
+		pane.add(goButton);
+		validate();
+
+		pane.add(clrButton);
+		clrButton.setBounds(300, 390, 80, 80);
+		
+		pane.add(resetButton);
+		resetButton.setBounds(300, 480, 80, 80);
+		
+		sButton.setBounds(70, 250, 80, 80);
+		ImageIcon sImage = new ImageIcon("C:\\Users\\Lucia Pineda\\workspace\\automat\\AutomatMP1\\src\\images\\scientist.png");
+		Image sImg = sImage.getImage();
+		Image newSImg = sImg.getScaledInstance(sButton.getWidth(), sButton.getHeight(), Image.SCALE_SMOOTH); //this makes the image fit the button
+		ImageIcon sImageIcon = new ImageIcon(newSImg);
+		sButton.setIcon(sImageIcon);
+		pane.add(sButton);
+		validate();
+		
+		cButton.setBounds(70, 340, 80, 80);
+		ImageIcon cImage = new ImageIcon("C:\\Users\\Lucia Pineda\\workspace\\automat\\AutomatMP1\\src\\images\\Cow.png");
+		Image cImg = cImage.getImage();
+		Image newCImg = cImg.getScaledInstance(cButton.getWidth(), cButton.getHeight(), Image.SCALE_SMOOTH); //this makes the image fit the button
+		ImageIcon cImageIcon = new ImageIcon(newCImg);
+		cButton.setIcon(cImageIcon);
+		pane.add(cButton);
+		validate();
+		
+		lButton.setBounds(70, 430, 80, 80);
+		ImageIcon lImage = new ImageIcon("C:\\Users\\Lucia Pineda\\workspace\\automat\\AutomatMP1\\src\\images\\Lion.png");
+		Image lImg = lImage.getImage();
+		Image newLImg = lImg.getScaledInstance(lButton.getWidth(), lButton.getHeight(), Image.SCALE_SMOOTH); //this makes the image fit the button
+		ImageIcon lImageIcon = new ImageIcon(newLImg);
+		lButton.setIcon(lImageIcon);
+		pane.add(lButton);
+		validate();
+		
+		gButton.setBounds(170, 250, 80, 80);
+		ImageIcon gImage = new ImageIcon("C:\\Users\\Lucia Pineda\\workspace\\automat\\AutomatMP1\\src\\images\\Grains.png");
+		Image gImg = gImage.getImage();
+		Image newGImg = gImg.getScaledInstance(gButton.getWidth(), gButton.getHeight(), Image.SCALE_SMOOTH); //this makes the image fit the button
+		ImageIcon gImageIcon = new ImageIcon(newGImg);
+		gButton.setIcon(gImageIcon);
+		pane.add(gButton);
+		validate();
+		
+		h1Button.setBounds(170, 340, 80, 80);
+		ImageIcon h1Image = new ImageIcon("C:\\Users\\Lucia Pineda\\workspace\\automat\\AutomatMP1\\src\\images\\Human1.png");
+		Image h1Img = h1Image.getImage();
+		Image newH1Img = h1Img.getScaledInstance(h1Button.getWidth(), h1Button.getHeight(), Image.SCALE_SMOOTH); //this makes the image fit the button
+		ImageIcon h1ImageIcon = new ImageIcon(newH1Img);
+		h1Button.setIcon(h1ImageIcon);
+		pane.add(h1Button);
+		validate();
+
+		
+		h2Button.setBounds(170, 430, 80, 80);
+		ImageIcon h2Image = new ImageIcon("C:\\Users\\Lucia Pineda\\workspace\\automat\\AutomatMP1\\src\\images\\Human2.png");
+		Image h2Img = h2Image.getImage();
+		Image newH2Img = h2Img.getScaledInstance(h2Button.getWidth(), h2Button.getHeight(), Image.SCALE_SMOOTH); //this makes the image fit the button
+		ImageIcon h2ImageIcon = new ImageIcon(newH2Img);
+		h2Button.setIcon(h2ImageIcon);
+		pane.add(h2Button);
+		validate();
+		
+		
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void sButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sButtonActionPerformed
@@ -308,6 +345,8 @@ public class Frame extends javax.swing.JFrame {
         
         
         int g = 0;
+        String message = new String();
+        
         for(int i = 0; i < dm1.size(); i++){
             if(dm1.get(i).equals("Scientist")){
                 g = 1;
@@ -317,23 +356,6 @@ public class Frame extends javax.swing.JFrame {
         
         if(g == 1){ //only if the scientist exists 	
             if(m % 2 == 0){  //if coming from earth to mars
-            	
-//                for(int i = 0; i < dm.size(); i++){ //removes from dm(earth)
-//                    for(int j = 0; j < dm1.size(); j++){
-//                        if(dm.get(i).equals(dm1.get(j))){ 
-//                        	
-////                        	System.out.println("dm.get(i) : " + dm.get(i));
-////                        	System.out.println("dm1.get(j) : " + dm.get(j));
-//                        	
-//                            System.out.println("REMOVING " + dm.get(i) + " FROM EARTH");
-//                        	
-//                            earth.removeOccupant(dm.get(i).toString());
-//                            earth.removeOccupant("Scientist");
-//                            dm.removeElement(dm.get(i));
-//                            
-//                        }
-//                    }
-//                }
                 
                 for(int j = 0; j < dm1.size(); j++){ //removes from earth(dm)
              	   System.out.println("Middle[" + j + "] = " + dm1.get(j));
@@ -357,7 +379,7 @@ public class Frame extends javax.swing.JFrame {
                     }
                 }
                 m = m + 1;
-                
+                movesLbl.setText("Moves: " + m);
             
             }
             
@@ -387,6 +409,7 @@ public class Frame extends javax.swing.JFrame {
                 }
                
                m = m + 1;
+               movesLbl.setText("Moves: " + m);
             }
             
             //print current occupants of each planet
@@ -404,16 +427,31 @@ public class Frame extends javax.swing.JFrame {
         	}
             
             //check if anyone was eaten
-            if(earth.check() == true && mars.check() == true)
+            if(earth.check().equals("valid") && mars.check().equals("valid"))
             {
             	System.out.println("Everyone is still OK.");
+            	message = "Everyone is still OK.";
+            	messageTA.setText(message);
             }
             else {
             	System.out.println("Someone was eaten :(");  
+            	
+            	if(!(earth.check().equals("valid")))
+            	{
+            		message = earth.check();
+            		messageTA.setText(message);
+            	}
+            	else if(!(mars.check().equals("valid")))
+	            	{
+	            		message = mars.check();
+	            		messageTA.setText(message);
+	            	}
             }
         }
         else {
         	System.out.println("The scientist must be present to travel!");
+    		message = "The scientist must be present to travel!";
+    		messageTA.setText(message);
         }
     }//GEN-LAST:event_goButtonActionPerformed
 
@@ -430,6 +468,40 @@ public class Frame extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_clrButtonActionPerformed
 
+    //reset moves to 0, clear all JLists, move everything back to earth
+    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    	m = 0;
+    	movesLbl.setText("Moves: " + m);
+        
+        earth.addOccupant(s.name);
+        earth.addOccupant(c.name);
+        earth.addOccupant(l.name);
+        earth.addOccupant(g.name);
+        earth.addOccupant(h1.name);
+        earth.addOccupant(h2.name);
+        earth.addOccupant(e.name);
+        
+        mars.removeAllOccupants();
+        
+    	dm.removeAllElements();
+    	dm1.removeAllElements();
+    	dm2.removeAllElements();
+        
+        dm.addElement(s.name);
+        dm.addElement(c.name);
+        dm.addElement(l.name);
+        dm.addElement(g.name);
+        dm.addElement(h1.name);
+        dm.addElement(h2.name);
+        
+        jList1.setModel(dm);
+        jList2.setModel(dm1);
+        jList3.setModel(dm2);
+        
+        messageTA.setText("");
+    	
+    }
+    
     public boolean decider(Entity e1, Entity e2, Entity e3){
         if(e1.name.equalsIgnoreCase("Lion")){
             
@@ -476,6 +548,7 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JButton clrButton;
     private javax.swing.JButton gButton;
     private javax.swing.JButton goButton;
+    private javax.swing.JButton resetButton;
     private javax.swing.JButton h1Button;
     private javax.swing.JButton h2Button;
     private javax.swing.JLabel jLabel1;
@@ -488,5 +561,8 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JButton lButton;
     private javax.swing.JButton sButton;
+    private javax.swing.JTextArea messageTA;
+    private javax.swing.JLabel movesLbl;
+    private javax.swing.JScrollPane jScrollPaneTA;
     // End of variables declaration//GEN-END:variables
 }

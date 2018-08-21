@@ -26,7 +26,14 @@ public class Planet {
     	return occupants;
     }
     
-    public boolean check() {
+    public void removeAllOccupants() {
+    	for(int i = 0; i < occupants.size(); i++)
+    	{
+    		occupants.remove(i);
+    	}
+    }
+    
+    public String check() {
     	
     	int lion = 0;
     	int cow = 0;
@@ -62,32 +69,32 @@ public class Planet {
     	{
     	if(lion == 1 && cow == 1) {
     		System.out.println("The lion ate the cow! :(");
-    		return false;
+    		return "The lion ate the cow! :(";
     	}
     	else if(cow == 1 && grains == 1) {
     			System.out.println("The cow ate the grains! :(");
-    			return false;
+    			return "The cow ate the grains! :(";
     		}
     		else if(human1 == 1 && lion == 1) {
     				System.out.println("The human (1) killed the lion! :(");
-    				return false;
+    				return "The human (1) killed the lion! :(";
     			}
     			else if(human2 == 1 && lion == 1) {
     					System.out.println("The human (2) killed the lion! :(");
-    					return false;
+    					return "The human (2) killed the lion! :(";
     				}
     				else if(human1 == 1 && cow == 1) {
     						System.out.println("The human (1) ate the cow! :(");
-    						return false;
+    						return "The human (1) ate the cow! :(";
     					}	
     					else if(human2 == 1 && lion == 1) {
     							System.out.println("The human (2) ate the cow! :(");
-    							return false;
+    							return "The human (2) ate the cow! :(";
     						}	
     						else
-    							return true;
+    							return "valid";
     	}
     	else
-    		return true;
+    		return "valid";
     }
 }
